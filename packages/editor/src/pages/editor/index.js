@@ -9,6 +9,7 @@ import styles from './index.less';
 
 function BasicLayout(props) {
   return (
+    /* 移动端实现拖拽的模版结构 */
     <div className={styles.layout}>
       <DndProvider backend={HTML5Backend}>
         <Container {...props} />
