@@ -23,7 +23,7 @@ export default defineConfig({
     {
       exact: false,
       path: '/',
-      component: '@/layouts/index',
+      component: '@/layouts/index', // 这里应用了layout组件
       routes: [
         {
           path: '/',

@@ -32,10 +32,12 @@ const Container = (props: {
   const [scaleNum, setScale] = useState(1);
   const [collapsed, setCollapsed] = useState(false);
   const [rightColla, setRightColla] = useState(true);
+  // 处理组件需要的state/props
   const { pstate, cstate, dispatch } = props;
   const pointData = pstate ? pstate.pointData : [];
   const cpointData = cstate ? cstate.pointData : [];
 
+  // useMemo依赖改变才会重新计算，工厂函数调用方式
   const changeCollapse = useMemo(() => {
     return (c: boolean) => {
       setCollapsed(c);
@@ -364,6 +366,7 @@ const Container = (props: {
         location={props.location}
         importTpl={importTpl}
       />
+      {/* 编辑的容器区域 */}
       <div className={styles.container}>
         <div
           className={styles.list}
@@ -375,6 +378,7 @@ const Container = (props: {
             boxShadow: 'none',
           }}
         >
+          {/* 左侧组件列表区域 */}
           <div className={styles.componentList}>
             <Tabs
               className="editorTabclass"
@@ -392,6 +396,8 @@ const Container = (props: {
           >
             {collapsed ? <DoubleRightOutlined /> : <DoubleLeftOutlined />}
           </div>
+
+
         </div>
         <div
           style={{
@@ -448,7 +454,7 @@ const Container = (props: {
     </div>
   );
 };
-
+// 看起来是把model数据映射到state
 export default connect((state: StateWithHistory<any>) => {
   return { pstate: state.present.editorModal, cstate: state.present.editorPcModal };
 })(Container);

@@ -23,9 +23,14 @@ library.push(
     useReg: /(.*?)作者是谁(.*?)/,
   },
 );
-
+/**
+ * @description 公共layout 组件，定义基础的可拓展的dom结构
+ *
+ */
 export default function Layout({ children }: IRouteComponentProps) {
+  // 定义state
   const [modalOpen, setModalOpen] = useState(false);
+  // useCallback: 依赖改变才执行回调？
   const callb = useCallback((v: RenderList) => {
     setTimeout(() => {
       //使用settimeout 更像机器人回话
@@ -88,7 +93,7 @@ export default function Layout({ children }: IRouteComponentProps) {
       </div>
     </div>,
   );
-
+  // dom渲染后执行副作用
   useEffect(() => {
     setInterval(() => {
       const timeout = +localStorage.getItem('tt');
