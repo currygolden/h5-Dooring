@@ -1,4 +1,5 @@
-////////////////////
+
+// 看起来是跟表单相关的类型
 export interface IUploadConfigType {
   key: string;
   name: string;
@@ -7,6 +8,7 @@ export interface IUploadConfigType {
   cropRate?: number;
 }
 
+// 泛型数组
 export type TUploadDefaultType = Array<{
   uid: string;
   name: string;

@@ -8,7 +8,9 @@ export type componentsType = 'media' | 'base' | 'visible';
 
 const DynamicFunc = (type: string, componentsType: string) => {
   return dynamic({
+    // 实际就是加载组件看起来都是本地的
     loader: async function () {
+      // 存在error的场景
       const { default: Graph } = await import(`@/ui-component/${componentsType}/${type}`);
       const Component = Graph;
       return (props: DynamicType) => {
@@ -34,6 +36,7 @@ type DynamicType = {
 
 const DynamicEngine = memo((props: DynamicType) => {
   const { type, config, category } = props;
+  // 返回了FC组件，也支持参数
   const Dynamic = useMemo(() => {
     return (DynamicFunc(type, category) as unknown) as FC<DynamicType>;
     // eslint-disable-next-line react-hooks/exhaustive-deps

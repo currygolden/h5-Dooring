@@ -28,6 +28,7 @@ const PreviewPage = memo((props: PreviewPageProps) => {
     } catch (err) {
       points = [];
     }
+    // useState的初始值
     return points.map((item: PointDataItem) => ({
       ...item,
       point: { ...item.point, isDraggable: false, isResizable: false },
@@ -47,7 +48,8 @@ const PreviewPage = memo((props: PreviewPageProps) => {
   });
 
   const vw = window.innerWidth;
-
+  // componentDidMount，componentDidUpdate 类似需要在dom渲染之后执行
+  // 若返回函数，则属于清除操作，会在销毁时调用
   useEffect(() => {
     const { tid, gf } = props.location.query!;
     if (!gf && parent.window.location.pathname === '/preview') {
@@ -80,6 +82,7 @@ const PreviewPage = memo((props: PreviewPageProps) => {
     }, 3000);
   }, [props.location.query]);
 
+  // 获取dom实例
   const ref = useRef<HTMLDivElement>(null);
   const refImgDom = useRef<HTMLDivElement>(null);
   const width = useGetScrollBarWidth(ref);

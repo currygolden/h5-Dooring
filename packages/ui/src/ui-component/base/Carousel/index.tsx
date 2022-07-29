@@ -8,7 +8,9 @@ import logo from '@/assets/banner.png';
 interface CarouselTypes extends ICarouselConfig {
   isTpl: boolean;
 }
-
+// 函数式组件，不依赖多余状态，memo用来控制prop场景的重复渲染
+// 对比vue 处理页面渲染和组件节点渲染区别
+// 轮播图组件，看起来描述UI本身没有问题
 const XCarousel = memo((props: PropsWithChildren<CarouselTypes>) => {
   const { direction, swipeable, autoPlay, isTpl, imgList, round } = props;
   const contentRender = () => {
